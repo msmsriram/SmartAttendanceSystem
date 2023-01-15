@@ -17,4 +17,4 @@ You can add more images to the 'StudentImages' folder to expand the dataset of k
 
 This code version has added a threshold to the facial recognition process. A threshold of 0.45 is set, you can adjust this value as you see fit. Lower value will make the match more strict and higher value will make the match more relaxed.
 
-Note: The code uses os.startfile("C:\Program Files (x86)\Iriun Webcam\IriunWebcam.exe") to start a webcam software, you might have to change the path and the software name according to the software you are using.
+###Note: The code uses os.startfile("C:\Program Files (x86)\Iriun Webcam\IriunWebcam.exe") to start a webcam software, you might have to change the path and the software name according to the software you are using.
