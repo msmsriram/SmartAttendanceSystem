@@ -1,5 +1,5 @@
 # Smart Attendance System
-This Python code uses the OpenCV and face_recognition libraries to track attendance using facial recognition. It captures video feed from the computer's webcam and compares the faces in the current frame to a pre-existing dataset of known faces. If a match is found, the name of the person is displayed on the screen and their attendance is marked in a CSV file.
+This Python code uses the OpenCV and face_recognition libraries to track attendance using facial recognition. It uses HOG (Histogram of Oriented Gradients) algorithm. It captures video feed from the computer's webcam and compares the faces in the current frame to a pre-existing dataset of known faces. If a match is found, the name of the person is displayed on the screen and their attendance is marked in a CSV file.
 
 ## Required packages
 - OpenCV
