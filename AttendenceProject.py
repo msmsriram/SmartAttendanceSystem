@@ -46,6 +46,8 @@ print(len(encodeListknown))
 
 cap = cv2.VideoCapture(0)
 
+THRESHOLD = 0.45
+
 while True:
     sucess, img = cap.read()
     imgs = cv2.resize(img, (0, 0), None, 0.25, 0.25)
@@ -55,36 +57,23 @@ while True:
     encodescurframe = face_recognition.face_encodings(imgs, facescurframe)
 
     for encodeface, faceloc in zip(encodescurframe, facescurframe):
-        matchs = face_recognition.compare_faces(encodeListknown, encodeface)
         facedis = face_recognition.face_distance(encodeListknown, encodeface)
-        # print(facedis)
         matchIndex = np.argmin(facedis)
+        matchDistance = facedis[matchIndex]
 
-        if matchs[matchIndex]:
+        if matchDistance < THRESHOLD:
+            matchs = True
+        else:
+            matchs = False
+
+        if matchs:
             name = classNames[matchIndex].upper()
-            # print(name)
-            y1,x2,y2,x1 = faceloc
-            y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
-            cv2.rectangle(img,(x1,y1),(x2,y2),(0,255.0),2)
-            cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
-            cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
+            y1, x2, y2, x1 = faceloc
+            y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255.0), 2)
+            cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+            cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
             markAttendence(name)
 
-
-
-
-    cv2.imshow('Webcam',img)
+    cv2.imshow('Webcam', img)
     cv2.waitKey(1)
-
-
-# faceloc = face_recognition.face_locations(imgElon)[0]
-# encodeElon =face_recognition.face_encodings(imgElon)[0]
-# cv2.rectangle(imgElon,(faceloc[3],faceloc[0]),(faceloc[1],faceloc[2]),(255,0,255),2)
-#
-# facelocTest = face_recognition.face_locations(imgtest)[0]
-# encodetest =face_recognition.face_encodings(imgtest)[0]
-# cv2.rectangle(imgtest,(facelocTest[3],facelocTest[0]),(facelocTest[1],facelocTest[2]),(255,0,255),2)
-#
-#
-# results = face_recognition.compare_faces([encodeElon],encodetest)
-# facedis = face_recognition.face_distance([encodeElon],encodetest)
