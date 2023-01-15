@@ -6,7 +6,7 @@ from datetime import datetime
 
 #os.startfile("C:\Program Files (x86)\Iriun Webcam\IriunWebcam.exe")
 
-path = 'attendence'
+path = 'Attendance'
 images = []
 classNames = []
 mylist = os.listdir(path)
@@ -28,7 +28,7 @@ def findencodings(images):
     return encodeList
 
 def markAttendence(name):
-    with open('Attendence.csv','r+') as f:
+    with open('Attendance.csv', 'r+') as f:
         myDatalist = f.readlines()
         nameList=[]
         # print(myDatalist)
